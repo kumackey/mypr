@@ -54,7 +54,7 @@ func main() {
 	var openCount, mergedCount int
 
 	// Open PR を検索
-	openQuery := fmt.Sprintf("is:pr author:@me state:open created:>=%s", since)
+	openQuery := fmt.Sprintf("is:pr author:@me state:open draft:false created:>=%s", since)
 	openPRs, err := searchPRs(ctx, client, openQuery)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error searching open PRs: %v\n", err)
@@ -68,7 +68,7 @@ func main() {
 	}
 
 	// Merged PR を検索
-	mergedQuery := fmt.Sprintf("is:pr author:@me is:merged created:>=%s", since)
+	mergedQuery := fmt.Sprintf("is:pr author:@me is:merged draft:false created:>=%s", since)
 	mergedPRs, err := searchPRs(ctx, client, mergedQuery)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error searching merged PRs: %v\n", err)
